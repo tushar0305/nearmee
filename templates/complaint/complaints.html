@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+{% block title %}Complaints{% endblock %}
+{% block content %}
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Partners</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="">Home</a></li>
+                <li class="breadcrumb-item active">Partners</li>
+            </ol>
+        </nav>
+    </div>
+
+    <!-- End Page Title -->
+    <section class="section">
+        <div class="row">
+            <div class="row">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Complaints List</h5>
+
+                        <!-- Table with stripped rows -->
+                        <table class="table table-striped datatable css-serial">
+                            <thead>
+                              <tr>
+                                <th scope="col">Booking Id</th>
+                                <th scope="col">Customer Detail</th>
+                                <th scope="col">Created</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Open</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for complaint in complaints %}
+                              <tr>
+                                <td>{{ complaint.booking_id }}</td>
+                                <td>{{ complaint.user_details.phone }}</td>
+                                <td>{{ complaint.created}}</td>
+                                <td>{{ complaint.status}}</td>
+                                <td>
+                                  <a href="{% url 'dashboard:complaint_detail' id=complaint.id %}">
+                                    <i class="bi bi-box-arrow-up-right"></i>
+                                  </a>
+                                </td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        
+                        <!-- End Table with stripped rows -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+{% endblock %}

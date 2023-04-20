@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+{% block title %}Partners{% endblock %}
+{% block content %}
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Partners</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="">Home</a></li>
+                <li class="breadcrumb-item active">Partners</li>
+            </ol>
+        </nav>
+    </div>
+    <!-- End Page Title -->
+    <section class="section">
+        <div class="row">
+            <div class="row">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Partners List</h5>
+
+                        <!-- Table with stripped rows -->
+                        <table class="table table-striped datatable css-serial">
+                            <thead>
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Addres</th>
+                                <th scope="col">Open</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for partner in partners %}
+                              <tr>
+                                <td scope="row"></td>
+                                <td>{{ partner.profile_token.first_name }}</td>
+                                <td>{{ partner.profile_token.email }}</td>
+                                <td>{{ partner.profile_token.phone}}</td>
+                                <td>{{ partner.office_address}}</td>
+                                <td>
+                                  <a href="{% url 'dashboard:partner_profile' id=partner.id %}">
+                                    <i class="bi bi-box-arrow-up-right"></i>
+                                  </a>
+                                </td>
+                              </tr>
+                              {%endfor%}
+                            </tbody>
+                          </table>
+                        
+                        <!-- End Table with stripped rows -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends 'layout.html' %}
+{% block title %}Customers{% endblock %}
+{% block content %}
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Customers</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="">Home</a></li>
+        <li class="breadcrumb-item active">Customers</li>
+      </ol>
+    </nav>
+  </div>
+  <!-- End Page Title -->
+  
+  <section class="section">
+    <div class="row">
+      <div class="row">
+        <!-- Chart Starts -->
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Customer Growth</h5>
+
+              <!-- Line Chart -->
+              <canvas id="lineChart" style="max-height: 400px;"></canvas>
+              <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                  new Chart(document.querySelector('#lineChart'), {
+                    type: 'line',
+                    data: {
+                      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                      datasets: [{
+                        label: 'Trend',
+                        data: [65, 59, 80, 81, 56, 55, 40, 90, 75, 84, 32, 71],
+                        fill: false,
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                      }]
+                    },
+                    options: {
+                      scales: {
+                        y: {
+                          beginAtZero: true
+                        }
+                      }
+                    }
+                  });
+                });
+              </script>
+              <!-- End Line CHart -->
+
+            </div>
+          </div>
+        </div>
+        <!-- chart End-->
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Customer List</h5>
+
+            <!-- Table with stripped rows -->
+            <table class="table table-striped datatable css-serial">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Phone</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for user in customers %}
+                <tr>
+                  <td scope="row"></td>
+                  <td>{{ user.first_name }} {{user.last_name}}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.phone}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            <!-- End Table with stripped rows -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</main>
+{% endblock %}
